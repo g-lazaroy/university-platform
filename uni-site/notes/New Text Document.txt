@@ -1,0 +1,20 @@
+Τεχνολογίες
+
+PHP 8 + MySQL
+XAMPP (Apache + MySQL)
+HTML5 / CSS3 / JavaScript
+Bootstrap 5 
+
+Βάση Δεδομένων
+
+Όνομα: university_db
+Test users:
+nikos@uni.gr / 123456 (φοιτητής)
+papadopoulos@uni.gr / prof123 (καθηγητής)
+
+
+Αντέγραψε τον φάκελο `uni-site` μέσα στο  
+C:\xampp\htdocs\uni-site\
+Άνοιξε τον browser  
+Πήγαινε στη διεύθυνση:  
+     http://localhost/uni-site/index.html

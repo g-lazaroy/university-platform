@@ -1,0 +1,14 @@
+AM,FirstName,LastName,Gender,BirthDate,FatherName,MotherName,SpouseName
+1001,Giorgos,Papadopoulos,Male,1995-03-15,Vasilis,Aggeliki,Maria
+1002,Maria,Papadopoulou,Female,1996-07-22,Petros,Elena,Giorgos
+1003,Nikos,Papadopoulos,Male,2018-05-10,Giorgos,Maria,
+1004,Eleni,Papadopoulou,Female,2020-09-18,Giorgos,Maria,
+1005,Vasilis,Papadopoulos,Male,1965-12-01,,,Aggeliki
+1006,Aggeliki,Papadopoulou,Female,1968-03-14,,,Vasilis
+2001,Dimitris,Ioannou,Male,1990-11-30,,,Anna
+2002,Anna,Ioannou,Female,1992-04-05,,,Dimitris
+2003,Kostas,Ioannou,Male,2015-01-20,Dimitris,Anna,
+3001,Petros,Konstantinou,Male,1970-06-12,,,Sofia
+3002,Sofia,Konstantinou,Female,1972-08-25,,,Petros
+1007,Petros,Georgiou,Male,1960-01-01,,,1008
+1008,Elena,Georgiou,Female,1962-02-02,,,1007

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Χάρτης - Πανεπιστήμιο Ηλιούπολης</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body class="map-bg">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Πανεπιστήμιο Ηλιούπολης</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Αρχική</a></li>
+            <li><a href="about.html">Πληροφορίες</a></li>
+            <li><a href="map.html" class="active">Χάρτης</a></li>
+            <li><a href="http://localhost/uni-site/auth.php">Log in</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <section class="info-section">
+            <h1>Πού Βρισκόμαστε</h1>
+            <p>Κεντρικό Campus: <strong>Λεωφ. Ειρήνης 45, Ηλιούπολη</strong></p>
+            <p>Εύκολη πρόσβαση με <strong>Μετρό</strong> και <strong>Λεωφορεία</strong>.</p>
+
+            <!-- ΧΑΡΤΗΣ ΜΕΣΑ ΣΤΟ ΠΛΑΙΣΙΟ -->
+            <div id="leaflet-map"></div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+/* =============================================================================
+   ROOT RESET 
+   ============================================================================= */
+html {
+    height: 100dvh;
+    overflow: hidden; /* Αποτρέπει zoom bugs */
+}
+
+body {
+    height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scroll σε iOS */
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Αποτροπή zoom όταν αλλάζει tab */
+@viewport { zoom: 1.0; }
+@-ms-viewport { width: device-width; }
+
+/* =============================================================================
+   ΚΟΙΝΟ ΣΤΥΛ
+   ============================================================================= */
+* { box-sizing: border-box; }
+a { text-decoration: none; transition: 0.3s; }
+
+/* =============================================================================
+   NAVBAR
+   ============================================================================= */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    background: #800020;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    backdrop-filter: blur(8px);
+}
+.logo { color: white; font-size: 1.7rem; font-weight: bold; }
+.nav-links { list-style: none; display: flex; gap: 2rem; }
+.nav-links a { color: white; font-weight: 500; font-size: 1.1rem; padding: 0.6rem 1.2rem; border-radius: 8px; }
+.nav-links a:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+.nav-links a.active { background: rgba(255,255,255,0.35); font-weight: bold; border: 2px solid rgba(255,255,255,0.5); }
+
+/* =============================================================================
+   SLIDESHOW
+   ============================================================================= */
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+}
+.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease-in-out; }
+.slide.active { opacity: 1; z-index: 1; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+
+/* =============================================================================
+   BACKGROUNDS (about, map)
+   ============================================================================= */
+.about-bg, .map-bg {
+    background: no-repeat center center / cover;
+    min-height: 100dvh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.about-bg { background-image: url('photos/photo4.jpg'); }
+.map-bg   { background-image: url('photos/photo5.jpg'); }
+
+.about-bg::before, .map-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(0,0,0,0.25); z-index: 1;
+}
+
+/* Desktop fixed */
+@media (min-width: 1025px) {
+    .about-bg, .map-bg { background-attachment: fixed; }
+}
+@media (max-width: 1024px) {
+    .about-bg, .map-bg { background-attachment: scroll; }
+}
+
+/* =============================================================================
+   MAIN CONTENT
+   ============================================================================= */
+.main-content {
+    margin-top: 80px;
+    padding: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+.info-section {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    padding: 3rem; border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    margin: 2rem 0;
+    animation: fadeInUp 0.8s ease-out;
+}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.info-section h1 { color: #800020; font-size: 2.4rem; margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 4px solid #800020; }
+.info-section h2 { color: #800020; font-size: 1.8rem; margin: 2rem 0 1rem; }
+.program { background: #f9f3f3; padding: 1.5rem; border-radius: 12px; border-left: 5px solid #800020; margin: 1.5rem 0; }
+
+/* =============================================================================
+   ΧΑΡΤΗΣ
+   ============================================================================= */
+/* =============================================================================
+   MAIN CONTENT - ΜΕΓΑΛΥΤΕΡΟ ΠΛΑΙΣΙΟ
+   ============================================================================= */
+.main-content {
+    margin-top: 80px;
+    padding: 3rem;
+    max-width: 1800px;          /* ΑΠΟ 1200px → 1600px */
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+/* =============================================================================
+   ΧΑΡΤΗΣ - FULL WIDTH ΜΕΣΑ ΣΤΟ ΠΛΑΙΣΙΟ
+   ============================================================================= */
+#leaflet-map {
+    width: 100%;                /* 100% ΤΟΥ ΠΛΑΙΣΙΟΥ */
+    height: 750px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
+    margin: 2rem 0;
+    z-index: 2;
+    overflow: hidden;
+}
+
+/* Desktop: 750px ύψος */
+@media (min-width: 1025px) {
+    #leaflet-map {
+        height: 750px !important;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    #leaflet-map { height: 580px; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #leaflet-map { height: 480px; margin: 1.5rem 0; }
+}
+
+/* Μικρό κινητό */
+@media (max-width: 480px) {
+    #leaflet-map { height: 400px; }
+}
+
+/* =============================================================================
+   ΕΙΚΟΝΙΔΙΑ ΧΑΡΤΗ - ΜΕΓΑΛΥΤΕΡΑ & ΕΠΑΓΓΕΛΜΑΤΙΚΑ
+   ============================================================================= */
+.campus-icon, .metro-icon, .bus-icon {
+    font-size: 28px !important;
+    width: 50px;
+    height: 50px;
+    line-height: 50px !important;
+    text-align: center;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border: 3px solid #fff;
+    transition: transform 0.2s ease;
+}
+
+.campus-icon:hover, .metro-icon:hover, .bus-icon:hover {
+    transform: scale(1.15);
+}
+
+/* Χρώματα */
+.campus-icon { background: #800020; color: white; }
+.metro-icon  { background: #d32f2f; color: white; }
+.bus-icon    { background: #1976d2; color: white; }
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+@media (max-width: 992px) { .navbar { padding: 1rem; } .nav-links { gap: 1.5rem; } .nav-links a { font-size: 1rem; } }
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; text-align: center; }
+    .nav-links { margin-top: 1rem; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .main-content { padding: 1rem; }
+    .info-section { padding: 2rem; margin: 1rem; }
+    .info-section h1 { font-size: 2rem; }
+    #leaflet-map { height: 400px; }
+}
+@media (max-width: 480px) {
+    .logo { font-size: 1.4rem; }
+    .info-section { padding: 1.5rem; margin: 0.5rem; }
+    .info-section h1 { font-size: 1.8rem; }
+    #leaflet-map { height: 350px; }
+}
+
+/* =============================================================================
+   ΚΟΙΝΟ ΣΤΥΛ - AUTH
+   ============================================================================= */
+.auth-container {
+    max-width: 460px;
+    margin: 100px auto;
+    padding: 3rem;
+    background: rgba(255,255,255,0.96);
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.22);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    backdrop-filter: blur(12px);
+}
+
+.auth-container h1 {
+    color: #800020;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 1.3rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    color: #444;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.95rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #800020;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(128,0,32,0.12);
+}
+
+.btn {
+    padding: 0.95rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background: #800020;
+    color: white;
+}
+
+.btn-login:hover {
+    background: #660018;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(128,0,32,0.3);
+}
+
+.btn-register {
+    background: #1976d2;
+    color: white;
+}
+
+.btn-register:hover {
+    background: #1565c0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(25,118,210,0.3);
+}
+
+.toggle-link {
+    margin-top: 1.8rem;
+    font-size: 0.98rem;
+    color: #555;
+}
+
+.toggle-link a {
+    color: #800020;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.toggle-link a:hover {
+    color: #660018;
+}
+
+.form-section {
+    display: none;
+}
+
+.form-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.error, .success {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+@media (max-width: 480px) {
+    .auth-container {
+        margin: 60px auto;
+        padding: 2rem;
+        max-width: 90%;
+    }
+    .auth-container h1 { font-size: 1.8rem; }
+    .form-group input, .form-group select { padding: 0.85rem; }
+    .btn { padding: 0.85rem; font-size: 1rem; }
+}
+
+.navbar {
+    background: #800020;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.nav-links a:hover, .nav-links a.active {
+    background: #660018;
+}
+
+.bg-maroon {
+    background-color: #800020 !important;
+}
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+.card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 12px;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(128, 0, 32, 0.15);
+}
+.btn-primary {
+    background-color: #800020;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #660018;
+}
+.alert {
+    border-radius: 12px;
+}
+
+.text-maroon { color: #800020; }
+.hover-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+.hover-card:hover {
+    transform: translateY(-8px);
+    border-color: #800020;
+    box-shadow: 0 12px 30px rgba(128, 0, 32, 0.2) !important;
+}
+.display-5 { font-size: 2.8rem; }
+@media (max-width: 768px) {
+    .display-5 { font-size: 2.2rem; }
+}
+
+.welcome-msg {
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    margin-right: 1rem;
+}
